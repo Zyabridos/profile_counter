@@ -1,0 +1,20 @@
+{
+  "name": "profile_counter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zyabridos/profile_counter.git"
+  },
+  "author": "Nina Ziabrina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zyabridos/profile_counter/issues"
+  },
+  "homepage": "https://github.com/Zyabridos/profile_counter#readme",
+  "description": ""
+}
