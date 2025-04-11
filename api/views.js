@@ -1,21 +1,27 @@
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export default async function handler(req, res) {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   const userAgent = req.headers['user-agent'] || '';
 
-  const myIp = '84.52.243.200';
-  const myAgentSignature = 'Macintosh';
+  // const ignoreIp = '84.52.243.200';
+  // if (ip.includes(ignoreIp)) return res.status(204).end();
 
-  if (ip.includes(myIp) || userAgent.includes(myAgentSignature)) {
-    return res.status(204).end(); // не учитываем себя
-  }
-
-  console.log(`[${new Date().toISOString()}] Visitor: ${ip} — ${userAgent}`);
+  await resend.emails.send({
+    from: process.env.EMAIL_FROM,
+    to: process.env.EMAIL_TO,
+    subject: '👀 Somebody checked your GitHub-profile',
+    html: `<p><strong>IP:</strong> ${ip}<br /><strong>User-Agent:</strong> ${userAgent}</p>`,
+  });
 
   const img = Buffer.from(
-    'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==', 'base64'
+    'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
+    'base64'
   );
+
   res.setHeader('Content-Type', 'image/gif');
-  res.setHeader('Content-Length', img.length);
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-cache');
   res.status(200).end(img);
 }

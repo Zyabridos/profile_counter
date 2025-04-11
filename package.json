@@ -2,7 +2,7 @@
   "name": "profile_counter",
   "version": "1.0.0",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
     "url": "https://github.com/Zyabridos/profile_counter/issues"
   },
   "homepage": "https://github.com/Zyabridos/profile_counter#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "resend": "^4.2.0"
+  }
 }
